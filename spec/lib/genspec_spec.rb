@@ -11,7 +11,7 @@ describe GenSpec do
   
     it "should generate files in generation root" do
       within_source_root { Dir[File.join(GenSpec.root, '**/*')].should_not be_empty }
-      subject.should generate("a_directory")
+      subject.should generate_file("a_directory")
     end
   end
 end

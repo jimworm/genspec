@@ -12,7 +12,7 @@ module GenSpec
     #   subject.should generate(:file, ...)
     #   subject.should generate("vendor/plugins/will_paginate/init.rb")
     #
-    def generate(kind = nil, *args, &block)
+    def generate_file(kind = nil, *args, &block)
       if kind.kind_of?(Symbol)
         # subject.should generate(:file, ...)
         call_action(kind, *args, &block)
@@ -29,13 +29,13 @@ module GenSpec
     # Example:
     #   subject.should delete("path/to/file")
     #
-    def delete(filename)
+    def delete_file(filename)
       within_source_root do
         FileUtils.mkdir_p File.dirname(filename)
         FileUtils.touch   filename
       end
       
-      generate { File.should_not exist(filename) }
+      generate_file { File.should_not exist(filename) }
     end
     
     # ex:
